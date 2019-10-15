@@ -169,16 +169,12 @@ module "stage_deployer" {
   env_deployer_policy_json           = var.env_deployer_policy_json["stage"]
   github_user                        = var.github_user
   region                             = var.region
-  remote_state_bucket                = data.terraform_remote_state.remote_state.outputs.stage_bucket_name
-  remote_state_bucket_arn            = data.terraform_remote_state.remote_state.outputs.stage_bucket_arn
-  remote_state_key_arn               = data.terraform_remote_state.remote_state.outputs.stage_key_arn
-  remote_state_locking_table         = data.terraform_remote_state.remote_state.outputs.stage_locking_table_name
-  remote_state_locking_table_arn     = data.terraform_remote_state.remote_state.outputs.stage_locking_table_arn
+  remote_state                       = data.terraform_remote_state.remote_state.outputs.env.stage
   remote_state_region                = data.terraform_remote_state.remote_state.outputs.region
   required_services                  = var.required_services
   service_name                       = var.service_name
   target_env                         = "stage"
-  tools_remote_state_bucket_arn      = data.terraform_remote_state.remote_state.outputs.tools_bucket_arn
+  tools_remote_state_bucket_arn      = data.terraform_remote_state.remote_state.outputs.env.tools.bucket_arn
 }
 
 module "prod_deployer" {
@@ -190,16 +186,12 @@ module "prod_deployer" {
   env_deployer_policy_json           = var.env_deployer_policy_json["prod"]
   github_user                        = var.github_user
   region                             = var.region
-  remote_state_bucket                = data.terraform_remote_state.remote_state.outputs.prod_bucket_name
-  remote_state_bucket_arn            = data.terraform_remote_state.remote_state.outputs.prod_bucket_arn
-  remote_state_key_arn               = data.terraform_remote_state.remote_state.outputs.prod_key_arn
-  remote_state_locking_table         = data.terraform_remote_state.remote_state.outputs.prod_locking_table_name
-  remote_state_locking_table_arn     = data.terraform_remote_state.remote_state.outputs.prod_locking_table_arn
+  remote_state                       = data.terraform_remote_state.remote_state.outputs.env.prod
   remote_state_region                = data.terraform_remote_state.remote_state.outputs.region
   required_services                  = var.required_services
   service_name                       = var.service_name
   target_env                         = "prod"
-  tools_remote_state_bucket_arn      = data.terraform_remote_state.remote_state.outputs.tools_bucket_arn
+  tools_remote_state_bucket_arn      = data.terraform_remote_state.remote_state.outputs.env.tools.bucket_arn
 }
 
 resource "aws_codepipeline" "pipeline" {

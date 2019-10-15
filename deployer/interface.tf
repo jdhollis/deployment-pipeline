@@ -4,11 +4,11 @@ variable "build_artifacts_key_arn" {}
 variable "env_deployer_policy_json" {}
 variable "github_user" {}
 variable "region" {}
-variable "remote_state_bucket" {}
-variable "remote_state_bucket_arn" {}
-variable "remote_state_key_arn" {}
-variable "remote_state_locking_table" {}
-variable "remote_state_locking_table_arn" {}
+
+variable "remote_state" {
+  type = "map"
+}
+
 variable "remote_state_region" {}
 
 variable "required_services" {

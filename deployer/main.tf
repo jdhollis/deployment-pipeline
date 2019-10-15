@@ -44,7 +44,7 @@ data "aws_iam_policy_document" "tools_deployer" {
     actions = ["s3:ListBucket"]
 
     resources = [
-      var.remote_state_bucket_arn,
+      var.remote_state.bucket_arn,
       var.tools_remote_state_bucket_arn,
     ]
   }
@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "tools_deployer" {
       "s3:PutObject",
     ]
 
-    resources = ["${var.remote_state_bucket_arn}/${var.service_name}/terraform.tfstate"]
+    resources = ["${var.remote_state.bucket_arn}/${var.service_name}/terraform.tfstate"]
   }
 
   statement {
@@ -88,7 +88,7 @@ data "aws_iam_policy_document" "tools_deployer" {
       "dynamodb:PutItem",
     ]
 
-    resources = [var.remote_state_locking_table_arn]
+    resources = [var.remote_state.locking_table_arn]
   }
 
   statement {
@@ -174,17 +174,17 @@ resource "aws_codebuild_project" "deployer" {
 
     environment_variable {
       name  = "TERRAFORM_STATE_BUCKET"
-      value = var.remote_state_bucket
+      value = var.remote_state.bucket_name
     }
 
     environment_variable {
       name  = "TERRAFORM_STATE_KMS_KEY_ARN"
-      value = var.remote_state_key_arn
+      value = var.remote_state.key_arn
     }
 
     environment_variable {
       name  = "TERRAFORM_STATE_LOCKING_TABLE"
-      value = var.remote_state_locking_table
+      value = var.remote_state.locking_table_name
     }
 
     environment_variable {
