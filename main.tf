@@ -222,7 +222,7 @@ resource "aws_codepipeline" "pipeline" {
 
       configuration = {
         OAuthToken = var.github_token
-        Owner      = var.github_user
+        Owner      = var.github_repo_owner
         Repo       = var.repo_name == "" ? var.service_name : var.repo_name
         Branch     = "master"
       }

@@ -2,6 +2,7 @@ variable "env_deployer_policy_json" {
   type = map(string)
 }
 
+variable "github_repo_owner" {}
 variable "github_token" {}
 variable "github_user" {}
 
