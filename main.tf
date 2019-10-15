@@ -338,4 +338,3 @@ resource "aws_codepipeline" "pipeline" {
     }
   }
 }
-

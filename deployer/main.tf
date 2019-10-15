@@ -196,4 +196,3 @@ resource "aws_codebuild_project" "deployer" {
   service_role  = aws_iam_role.tools_deployer.arn
   build_timeout = "15" # minutes
 }
-

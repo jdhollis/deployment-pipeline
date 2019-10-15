@@ -22,4 +22,3 @@ variable "tools_remote_state_bucket_arn" {}
 output "codebuild_project_name" {
   value = aws_codebuild_project.deployer.name
 }
-
