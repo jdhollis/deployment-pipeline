@@ -6,19 +6,23 @@ This module is meant to be used as a remote Terraform module within other servic
 module "pipeline" {
   source = "github.com/jdhollis/deployment-pipeline"
 
+  github_token = var.github_token
+  github_user  = var.github_user
+
   env_deployer_policy_json = {
     stage = module.stage.json
     prod  = module.prod.json
   }
 
-  region = var.region
+  region                     = var.region
+  remote_state_bucket        = "…"
+  remote_state_locking_table = "…"
 
   required_services = [
     "…"
   ]
 
   service_name = "…"
-  github_token = var.github_token
 }
 ```
 
