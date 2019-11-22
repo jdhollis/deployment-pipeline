@@ -1,6 +1,6 @@
 # `deployment-pipeline`
 
-This module is meant to be used as a remote Terraform module within other services.
+This module is meant to be used as a remote Terraform module within other services.  See my [pipeline-example](https://github.com/jdhollis/pipeline-example) for a usage example.
 
 ```hcl
 module "pipeline" {
