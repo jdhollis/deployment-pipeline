@@ -1,6 +1,12 @@
 # `deployment-pipeline`
 
-This module is meant to be used as a remote Terraform module within other services.  See my [pipeline-example](https://github.com/jdhollis/pipeline-example) for a usage example.
+This module creates a CodePipeline for deploying a service across multiple AWS accounts.
+
+<img src="diagram.png?raw=true" width="50%" alt="diagram" />
+
+## Usage
+
+This module is meant to be used as a remote Terraform module within other services.
 
 ```hcl
 module "pipeline" {
@@ -26,6 +32,6 @@ module "pipeline" {
 }
 ```
 
-You need to create service-specific deployer policy JSON for each environment.
+You need to create service-specific deployer policy JSON for each environment. See my [pipeline-example](https://github.com/jdhollis/pipeline-example), particularly [`service-example/pipeline/env-deployer-policy`](https://github.com/jdhollis/pipeline-example/tree/master/service-example/pipeline/env-deployer-policy).
 
 If the deployer needs access to remote state from other services, you can pass in their keys to `required_services` (e.g., "datomic", "elasticsearch", etc.).
