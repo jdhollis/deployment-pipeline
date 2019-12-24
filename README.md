@@ -1,4 +1,4 @@
-# `deployment-pipeline`
+# deployment-pipeline
 
 This module creates a CodePipeline for deploying a service across multiple AWS accounts.
 
