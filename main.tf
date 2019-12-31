@@ -113,7 +113,7 @@ resource "aws_codebuild_project" "builder" {
   }
 
   service_role  = aws_iam_role.builder.arn
-  build_timeout = "15" # minutes
+  build_timeout = var.builder_build_timeout
 }
 
 data "aws_iam_policy_document" "assume_codepipeline_service_role" {
@@ -166,6 +166,7 @@ module "stage_deployer" {
   assume_codebuild_service_role_json = data.aws_iam_policy_document.assume_codebuild_service_role.json
   build_artifacts_bucket             = aws_s3_bucket.build_artifacts.id
   build_artifacts_key_arn            = module.build_artifacts_key.arn
+  build_timeout                      = var.deployer_build_timeout
   env_deployer_policy_json           = var.env_deployer_policy_json["stage"]
   github_user                        = var.github_user
   region                             = var.region
@@ -183,6 +184,7 @@ module "prod_deployer" {
   assume_codebuild_service_role_json = data.aws_iam_policy_document.assume_codebuild_service_role.json
   build_artifacts_bucket             = aws_s3_bucket.build_artifacts.id
   build_artifacts_key_arn            = module.build_artifacts_key.arn
+  build_timeout                      = var.deployer_build_timeout
   env_deployer_policy_json           = var.env_deployer_policy_json["prod"]
   github_user                        = var.github_user
   region                             = var.region

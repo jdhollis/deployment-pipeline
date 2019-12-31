@@ -12,13 +12,16 @@ This module is meant to be used as a remote Terraform module within other servic
 module "pipeline" {
   source = "github.com/jdhollis/deployment-pipeline"
 
-  github_token = var.github_token
-  github_user  = var.github_user
+  builder_build_timeout  = "…" # Defaults to 15 minutes
+  deployer_build_timeout = "…" # Defaults to 15 minutes
 
   env_deployer_policy_json = {
     stage = module.stage.json
     prod  = module.prod.json
   }
+
+  github_token = var.github_token
+  github_user  = var.github_user
 
   region                     = var.region
   remote_state_bucket        = "…"

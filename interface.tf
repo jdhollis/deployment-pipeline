@@ -1,3 +1,11 @@
+variable "builder_build_timeout" {
+  default = "15" # minutes
+}
+
+variable "deployer_build_timeout" {
+  default = "15" # minutes
+}
+
 variable "env_deployer_policy_json" {
   type = map(string)
 }

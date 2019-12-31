@@ -1,6 +1,7 @@
 variable "assume_codebuild_service_role_json" {}
 variable "build_artifacts_bucket" {}
 variable "build_artifacts_key_arn" {}
+variable "build_timeout" {}
 variable "env_deployer_policy_json" {}
 variable "github_user" {}
 variable "region" {}
